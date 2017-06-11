@@ -112,6 +112,18 @@ class linkedlist
 
     }
 
+    public boolean search(Node head, int x)
+
+    {
+        if(head==null)
+            return false;
+        else if(head.data==x)
+            return true;
+        else
+            return search(head.next,x);
+
+    }
+
     public void deletenode(int position)
     {
         Node temp=head,prev=null;
@@ -152,6 +164,28 @@ class linkedlist
     else
     return ktolastrecursive(head.next,k,i);
 
+    }
+
+    public int size()
+    {
+        int i=0;
+        Node temp=head;
+        while(temp!=null)
+        {
+            i++;
+            temp=temp.next;
+        }
+        return i;
+    }
+    int count=0;
+
+    public int size(Node head)
+    {
+           if(head==null)
+               return 0;
+
+           else
+               return 1 + size(head.next);
     }
 
     public Node ktolast(int k)
@@ -249,7 +283,12 @@ class linkedlist
             result=result.next;
         }
 
+        int size=llist.size(llist.head);
+        System.out.println("size= " + size);
         System.out.println("\nCreated Linked list is: ");
         llist.printList();
+        boolean res=llist.search(llist.head,4);
+        System.out.println(res);
+
     }
 }
