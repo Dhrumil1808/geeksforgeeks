@@ -18,7 +18,7 @@ public class max_sum_array {
         for(int i=0;i<a.length;i++)
         {
             if(max<a[i]) {
-                max = a[i];
+
                 index=i;
             }
             max_end_here = max_end_here + a[i];
@@ -35,9 +35,9 @@ public class max_sum_array {
         }
 
         if(s==a.length) {
-            max_far_here = max;
-            start=index;
-            end=index;
+
+            start=-1;
+            end=-1;
         }
 
         System.out.println(start);
