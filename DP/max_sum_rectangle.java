@@ -64,6 +64,7 @@ public class max_sum_rectangle {
         int right = 0;
         int bottom = 0;
 
+
         for (int leftCol = 0; leftCol < cols; leftCol++) {
             int[] tmp = new int[rows];
 
