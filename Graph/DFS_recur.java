@@ -8,54 +8,59 @@ import java.util.Stack;
  * Created by dhrumil on 8/31/17.
  */
  public class DFS_recur {
-        private int V;
-        private LinkedList<Integer> adj[];
 
-        public DFS_recur(int v)
-        {
-            V=v;
-            adj=new LinkedList[v];
-            for(int i=0;i<v;i++)
+     private int V;
+     private LinkedList<Integer> adj[];
+
+     public DFS_recur(int v)
+     {
+         V=v;
+         adj=new LinkedList[V];
+         for(int i=0;i<V;i++)
+         {
+             adj[i]=new LinkedList<Integer>();
+         }
+
+     }
+
+
+     public void addEdge(int v,int w)
+     {
+         adj[v].add(w);
+     }
+
+     public void DFSUtil(int v, boolean[] visited)
+
+     {
+        //LinkedList<Integer> queue=new LinkedList<Integer>();
+        visited[v]=true;
+        //queue.add(v);
+
+
+            System.out.println(v + " ");
+
+            Iterator<Integer> iter=adj[v].listIterator();
+            while(iter.hasNext())
             {
-                adj[i]=new LinkedList<Integer>();
-            }
-        }
-
-        public void addEdge(int v, int w)
-        {
-            adj[v].add(w);
-        }
-
-
-        public void bfs(int s,boolean[] visited)
-        {
-
-
-            visited[s]=true;
-            Stack<Integer> stack=new Stack<Integer>();
-            stack.push(s);
-
-            while(stack.size()!=0)
-            {
-                int p=stack.pop();
-                System.out.println(p + " ");
-                Iterator<Integer> i= adj[p].listIterator();
-                while(i.hasNext())
+                int n = iter.next();
+                if(!visited[n])
                 {
-                    int n=i.next();
-                    while(!visited[n])
-                    {
-
-                        bfs(s,visited);
-                    }
+                  // visited[n]=true;
+                    DFSUtil(n,visited);
                 }
             }
 
-        }
+     }
+
+     public void DFS(int v)
+     {
+         boolean[] visited=new boolean[V];
+         DFSUtil(v,visited);
+     }
 
         public static void main(String[] args)
         {
-            Graph.DFS b=new Graph.DFS(5);
+            DFS_recur b=new DFS_recur(5);
             b.addEdge(0, 1);
             b.addEdge(0, 2);
             b.addEdge(1, 2);
@@ -63,7 +68,9 @@ import java.util.Stack;
             b.addEdge(2, 3);
             b.addEdge(3, 3);
             b.addEdge(3,4);
-            b.bfs(2);
+
+            boolean[] visited=new boolean[5];
+            b.DFS(2);
         }
 
 
