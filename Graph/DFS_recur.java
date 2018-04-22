@@ -2,7 +2,6 @@ package Graph;
 
 import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.Stack;
 
 /**
  * Created by dhrumil on 8/31/17.
@@ -29,10 +28,15 @@ import java.util.Stack;
          adj[v].add(w);
      }
 
-     public void DFSUtil(int v, boolean[] visited)
+     public void DFSUtil(int v, boolean[] visited,boolean bool)
 
      {
         //LinkedList<Integer> queue=new LinkedList<Integer>();
+
+         if(visited[v]) {
+             bool = true;
+            // System.out.println("Graph has cycle");
+         }
         visited[v]=true;
         //queue.add(v);
 
@@ -46,16 +50,17 @@ import java.util.Stack;
                 if(!visited[n])
                 {
                   // visited[n]=true;
-                    DFSUtil(n,visited);
+                    DFSUtil(n,visited,false);
                 }
             }
+
 
      }
 
      public void DFS(int v)
      {
          boolean[] visited=new boolean[V];
-         DFSUtil(v,visited);
+         DFSUtil(v,visited,false);
      }
 
         public static void main(String[] args)

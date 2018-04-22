@@ -26,11 +26,9 @@ public class DFS {
     }
 
 
-    public void bfs(int s)
+    public void bfs(int s,boolean bool)
     {
-
         boolean visit[]=new boolean[V];
-
         visit[s]=true;
         Stack<Integer> stack=new Stack<Integer>();
         stack.push(s);
@@ -46,24 +44,35 @@ public class DFS {
                 while(!visit[n])
                 {
                     visit[n]=true;
+
                     stack.push(n);
                 }
+                if(visit[n])
+                    bool=true;
+
             }
         }
+
+
+        if(bool)
+            System.out.println("The Graph has cycle");
+        else
+            System.out.println("the Graph does not contain any cycle");
+
 
     }
 
     public static void main(String[] args)
     {
-        DFS b=new DFS(5);
+        DFS b=new DFS(4);
         b.addEdge(0, 1);
         b.addEdge(0, 2);
         b.addEdge(1, 2);
         b.addEdge(2, 0);
         b.addEdge(2, 3);
         b.addEdge(3, 3);
-        b.addEdge(3,4);
-        b.bfs(2);
+
+        b.bfs(2,false);
     }
 
 
